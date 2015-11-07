@@ -245,7 +245,7 @@ class Scaffold extends Component
             $this->makeView('edit');
 			
 			// View view.phtml
-            $this->_makeViewView();
+            $this->makeView('view');
         }
 
         return true;
@@ -381,9 +381,24 @@ class Scaffold extends Component
 	
 	private function _makeFieldView($attribute, $dataType, $relationField, $selectDefinition)
     {
+        //$code = str_replace('$plural$', $this->options->plural, $code);
+		
 		$code = "\t" . '<tr class="odd gradeX" role="row">' . PHP_EOL;
 		$code.= "\t\t" . '<th>'.mb_convert_case($attribute, MB_CASE_TITLE, "UTF-8").'</th>' . PHP_EOL;
-		$code.= "\t\t" . '<td>aaaaaa</td>' . PHP_EOL;
+		if($attribute == 'image'){
+			$code.= "\t\t" . '<td>'. PHP_EOL;
+			$code.= "\t\t\t" . '<?php if(file_exists($'.$this->options->plural.'->'.$attribute.')){ ?>'. PHP_EOL;;
+			$code.= "\t\t\t\t" . '<a class="fancybox" href="<?php echo $this->url->getBaseUri() . $'.$this->options->plural.'->'.$attribute.' ?>">'. PHP_EOL;;
+			$code.= "\t\t\t\t\t" . '<img height="50" src="<?php echo $this->url->getBaseUri() . $'.$this->options->plural.'->'.$attribute.' ?>"/></a>'. PHP_EOL;;
+			$code.= "\t\t\t" . '<?php } else{ ?>'. PHP_EOL;;
+			$code.= "\t\t\t\t\t" . '<img height="50" src="<?php echo $this->url->getBaseUri() ?>images/no-image.jpg" />'. PHP_EOL;;
+			$code.= "\t\t\t" . '<?php } ?>'. PHP_EOL;;
+			$code.= "\t\t" . '</td>'. PHP_EOL;
+		}
+		else{
+			$code.= "\t\t" . '<td><?php echo $'. $this->options->plural .'->'. $attribute .' ?></td>'. PHP_EOL;
+		}
+		
 		$code.= "\t" . '</tr>' . PHP_EOL;
 		return $code;
     }

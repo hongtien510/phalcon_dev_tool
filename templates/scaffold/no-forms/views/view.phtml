@@ -36,28 +36,7 @@
                         <div class="table-scrollable">
                             <table class="table table-striped table-bordered table-hover">
                                 <tbody>
-                                    <?php foreach ($$plural$ as $key => $value) { ?>
-										<tr class="odd gradeX" role="row">
-											<th><?php echo mb_convert_case($key, MB_CASE_TITLE, "UTF-8"); ?></th>
-											<td>
-												<?php
-													if($key == 'image'){
-														if(file_exists($value)){
-												?>
-														<a class="fancybox" href="<?php echo $this->url->getBaseUri() . $value ?>">
-															<img height="50" src="<?php echo $this->url->getBaseUri() . $value ?>"/>
-														</a>
-												<?php } else{ ?>
-															<img height="50" src="<?php echo $this->url->getBaseUri() ?>images/no-image.jpg" />
-												<?php	}  
-													}
-													else{
-														echo $value;
-													}
-												?>
-											</td>
-										</tr>
-									<?php } ?>
+                                    $captureFields$
                                 </tbody>
                             </table>
                         </div>

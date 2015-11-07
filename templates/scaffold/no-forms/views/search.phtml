@@ -1,0 +1,88 @@
+<div class="page-content">
+	<!-- BEGIN PAGE HEADER-->
+	<h3 class="page-title">
+	<?php echo mb_convert_case('$plural$', MB_CASE_TITLE, "UTF-8"); ?>
+	</h3>
+	<div class="page-bar">
+		<ul class="page-breadcrumb">
+			<li>
+				<i class="fa fa-home"></i>
+				<a href="<?php echo $this->url->getBaseUri().'admin'; ?>">Home</a>
+				<i class="fa fa-angle-right"></i>
+			</li>
+			<li>
+				<a href="#"><?php echo mb_convert_case('$plural$', MB_CASE_TITLE, "UTF-8"); ?></a>
+			</li>
+		</ul>
+	</div>
+	<!-- END PAGE HEADER-->
+	<!-- BEGIN PAGE CONTENT-->
+	<div class="row">
+		<div class="col-md-12">
+			<!-- BEGIN EXAMPLE TABLE PORTLET-->
+			<div class="portlet box grey-cascade">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-globe"></i>Managed Table
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div class="table-toolbar">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="btn-group">
+									<button link_to="<?php echo $this->url->get('$plural$/new/'); ?>" id="sample_editable_1_new" class="btn green">
+									Add New <i class="fa fa-plus"></i>
+									</button>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="btn-group pull-right">
+									<button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
+									</button>
+									<ul class="dropdown-menu pull-right">
+										<li>
+											<a href="javascript:;">
+											Print </a>
+										</li>
+										<li>
+											<a href="javascript:;">
+											Save as PDF </a>
+										</li>
+										<li>
+											<a href="javascript:;">
+											Export to Excel </a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<table class="table table-striped table-bordered table-hover" id="sample_1">
+						<thead>
+							<tr>
+								$headerColumns$
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+						
+						<?php foreach ($page->items as $singularVar$) { ?>
+							<tr class="odd gradeX">
+								$rowColumns$            
+								<td>
+									<?php echo $this->tag->linkTo(array("admin/$plural$/edit/" . $singularVar$->$pk$, "Edit")); ?> | 
+									<?php echo $this->tag->linkTo(array("admin/$plural$/delete/" . $singularVar$->$pk$, "Delete")); ?>
+								</td>
+							</tr>
+						<?php } ?>
+					
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- END EXAMPLE TABLE PORTLET-->
+		</div>
+	</div>
+	<!-- END PAGE CONTENT-->
+</div>
